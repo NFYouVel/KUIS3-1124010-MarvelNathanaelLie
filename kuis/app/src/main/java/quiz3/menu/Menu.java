@@ -59,6 +59,10 @@ public class Menu {
     private void handleInput() {
         System.out.println("Masukkan Angka: ");
         int input = CLIUtil.getInt();
-        list.addList(input);
+        try {
+            list.addList(input);
+        } catch (InvalidInputException e) {
+            e.printStackTrace();
+        }
     }
 }

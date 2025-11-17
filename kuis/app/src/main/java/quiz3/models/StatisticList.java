@@ -4,19 +4,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class StatisticList<T extends Number> {
-
     private List<T> list;
 
     public StatisticList() {
         this.list = new ArrayList<>();
     }
 
-    public void addList(T value) {
-        this.list.add(value);
-        this.list.sort(null);
+    public void addList(T value) throws InvalidInputException{
+        if (value.doubleValue() <= 0 || value.doubleValue() >= 0) {
+            this.list.add(value);
+            this.list.sort(null);
+        } else {
+            throw new InvalidInputException("Input tidak valid atau bukan angka!");
+        }
     }
 
-    public double getAverage() throws EmptyListException {
+    public double getAverage() throws EmptyListException{
         double size = this.list.size();
         if (size == 0) {
             throw new EmptyListException("List nya masih kosong!");
@@ -34,7 +37,7 @@ public class StatisticList<T extends Number> {
         if (list.isEmpty()) {
             throw new EmptyListException("List nya masih kosong!");
         }
-
+        
         double max = 0;
         int index = 0;
         for (int i = 0; i < list.size(); i++) {
@@ -43,7 +46,7 @@ public class StatisticList<T extends Number> {
                 index = i;
             }
         }
-
+        
         return this.list.get(index);
     }
 
@@ -51,7 +54,7 @@ public class StatisticList<T extends Number> {
         if (list.isEmpty()) {
             throw new EmptyListException("List nya masih kosong!");
         }
-
+        
         double min = 0;
         int index = 0;
         for (int i = 0; i < list.size(); i++) {
@@ -60,11 +63,11 @@ public class StatisticList<T extends Number> {
                 index = i;
             }
         }
-
+        
         return this.list.get(index);
     }
 
-    public double getMedian() throws EmptyListException {
+    public double getMedian() throws EmptyListException{
         if (list.isEmpty()) {
             throw new EmptyListException("List nya masih kosong!");
         }
