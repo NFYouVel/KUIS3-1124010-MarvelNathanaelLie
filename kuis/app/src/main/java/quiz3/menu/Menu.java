@@ -31,7 +31,7 @@ public class Menu {
                         System.out.println(list.getMedian());
                         break;
                     case 6:
-                        System.out.println(list.getMedian());
+                        list.getAll();
                         break;
                     case 0:
                         return;
